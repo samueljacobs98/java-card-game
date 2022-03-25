@@ -1,8 +1,6 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class CardGame {
@@ -10,8 +8,12 @@ public class CardGame {
     private String name;
 
     public CardGame(String name) {
-        initialiseDeck();
+        deckOfCards = initialiseDeck();
         this.name = name;
+    }
+
+    public ArrayList<Card> getDeckOfCards() {
+        return deckOfCards;
     }
 
     public ArrayList<Card> getDeck() {
@@ -34,17 +36,21 @@ public class CardGame {
         }
     }
 
-    private void initialiseDeck() {
+    private ArrayList<Card> initialiseDeck() {
+        ArrayList<Card> temporaryDeck = new ArrayList<Card>(0);
         for (int value = 2; value < 15; value++) {
             for (int suitNum = 0; suitNum < 4; suitNum++ ) {
             String suit = getSuitFromSuitNum(suitNum);
-                deckOfCards.add(new Card(suit, value));
+                temporaryDeck.add(new Card(suit, value));
             }
         }
+        return temporaryDeck;
     }
 
     public Card dealCard() {
-        return deckOfCards.get(0);
+        Card temporaryCard = deckOfCards.get(0);
+        deckOfCards.remove(0);
+        return temporaryCard;
     }
 
     public void sortDeckInNumberOrder() {
