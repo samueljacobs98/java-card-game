@@ -1,5 +1,6 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -47,18 +48,29 @@ public class CardGame {
     }
 
     public void sortDeckInNumberOrder() {
-        deckOfCards.removeAll(deckOfCards);
-        initialiseDeck();
+        ArrayList<Card> temporaryDeck = new ArrayList<Card>(0);
+        for (int value = 2; value < 15; value++) {
+            for (Card card : deckOfCards) {
+                if (card.getValue() == value) {
+                    temporaryDeck.add(card);
+                }
+            }
+        }
+        deckOfCards = temporaryDeck;
     }
 
     public void sortDeckIntoSuits() {
-        deckOfCards.removeAll(deckOfCards);
-            for (int suitNum = 0; suitNum < 4; suitNum++ ) {
-                String suit = getSuitFromSuitNum(suitNum);
-                for (int value = 2; value < 15; value++) {
-                    deckOfCards.add(new Card(suit, value));
+        sortDeckInNumberOrder();
+        ArrayList<Card> temporaryDeck = new ArrayList<Card>(0);
+        String[] suitsArr = {"♥","♦","♠","♣"};
+        for (String suit : suitsArr) {
+            for (Card card : deckOfCards) {
+                if (card.getSuit() == suit) {
+                    temporaryDeck.add(card);
                 }
-            };
+            }
+        }
+        deckOfCards = temporaryDeck;
     }
 
     public void shuffleDeck() {

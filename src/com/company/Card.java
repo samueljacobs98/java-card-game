@@ -3,6 +3,7 @@ package com.company;
 public class Card {
     private String suit;
     private String symbol;
+
     private int value;
 
     public Card(String suit,  int value) {
@@ -28,5 +29,13 @@ public class Card {
                 return "A";
         }
         return "-1";
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getSuit() {
+        return suit;
     }
 }
