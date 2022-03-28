@@ -2,14 +2,17 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class CardGame {
     private ArrayList<Card> deckOfCards = new ArrayList<Card>(0);
     private String name;
+    protected Scanner scanner;
 
-    public CardGame(String name) {
+    public CardGame(String name, Scanner scanner) {
         deckOfCards = initialiseDeck();
         this.name = name;
+        this.scanner = scanner;
     }
 
     public ArrayList<Card> getDeckOfCards() {
